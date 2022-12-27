@@ -1,11 +1,11 @@
 .calculator {
     width: 80rem;
-    height: 36rem;
+    height: 40rem;
     background-color: var(--color-white);
-    padding: 4rem;
+    padding: 2.5rem;
     border-radius: 2rem;
     display: flex;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 .values {
@@ -13,6 +13,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
+    padding: 1rem;
 }
 
 .tip .buttons {
@@ -43,8 +44,48 @@
 }
 
 .result {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: 1;
     background-color: var(--color-very-dark-cyan);
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 4rem 3rem 3rem 3rem;
+}
+
+.result .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.result .wrapper .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row .description p {
+    font-size: 1.4rem;
+    color: var(--color-white);
+}
+
+.row .description span {
+    font-size: 1.2rem;
+    color: var(  --color-grayish-cyan);
+}
+
+.row .value {
+    font-size: 4rem;
+    color: var(--color-strong-cyan);;
+}
+
+.result button {
+    padding: .8rem;
+    background-color: var(--color-strong-cyan);
+    border: none;
+    border-radius: .4rem;
+    text-transform: uppercase;
+    font-family: var(--font-1);
+    color: var(--color-very-dark-cyan);
 }

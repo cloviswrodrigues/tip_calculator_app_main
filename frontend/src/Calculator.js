@@ -26,20 +26,22 @@ const Calculator = () => {
                 </div>
             </div>
             <div className={style.result}>
-                <div>
-                    <div>
-                        <p>Tip Amount</p>
-                        <span>/ person</span>
+                <div className={style.wrapper}>
+                    <div className={style.row}>
+                        <div className={style.description}>
+                            <p>Tip Amount</p>
+                            <span>/ person</span>
+                        </div>
+                        <div className={style.value}>$4.27</div>
                     </div>
-                    <div>$ 0.00</div>
-                </div>
-                <div>
-                    <div>
-                        <p>Total</p>
-                        <span>/ person</span>
+                    <div className={style.row}>
+                        <div className={style.description}>
+                            <p>Total</p>
+                            <span>/ person</span>
+                        </div>
+                        <div className={style.value}>$0.00</div>
                     </div>
-                    <div>$ 0.00</div>
-                </div>
+                </div>                
                 <button>reset</button>
             </div>
         </div>
