@@ -1,30 +1,31 @@
 import React from 'react';
+import style from './Calculator.module.css';
 
 const Calculator = () => {
     return (
-        <div>
-            <div>
-                <div>
-                    <label htmlFor="">Bill</label>
-                    <input type="number" />
+        <div className={style.calculator}>
+            <div className={style.values}>
+                <div className={style.bill}>
+                    <label htmlFor="bill" className='type-1'>Bill</label>
+                    <input type="number" className='input' id="bill"/>
                 </div>
-                <div>
-                    <p>Select Tip %</p>
-                    <div>
-                        <button>5%</button>
-                        <button>10%</button>
-                        <button>15%</button>
-                        <button>25%</button>
-                        <button>50%</button>
-                        <input type="number" name="" id="" />
+                <div className={style.tip}>
+                    <p className='type-1'>Select Tip %</p>
+                    <div className={style.buttons}>
+                        <button className={style.buttonFixed}>5%</button>
+                        <button className={style.buttonFixed}>10%</button>
+                        <button className={style.buttonFixed}>15%</button>
+                        <button className={style.buttonFixed}>25%</button>
+                        <button className={style.buttonFixed}>50%</button>
+                        <button className={style.buttonCustom}>Custom</button>
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="">Number of People</label>
-                    <input type="number" name="" id="" />
+                    <label htmlFor="people" className='type-1'>Number of People</label>
+                    <input type="number" name="" id="people" className='input'/>
                 </div>
             </div>
-            <div>
+            <div className={style.result}>
                 <div>
                     <div>
                         <p>Tip Amount</p>

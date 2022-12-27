@@ -1,0 +1,50 @@
+.calculator {
+    width: 80rem;
+    height: 36rem;
+    background-color: var(--color-white);
+    padding: 4rem;
+    border-radius: 2rem;
+    display: flex;
+    gap: 4rem;
+}
+
+.values {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.tip .buttons {
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    gap: .8rem;
+    margin-top: .8rem;
+
+}
+
+.buttons > button {
+    border: none;
+    padding: .5rem 2rem;
+    border-radius: .4rem;
+    font-family: var(--font-1);
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.buttonFixed {
+    background-color: var(--color-very-dark-cyan);
+    color: var(--color-white); 
+}
+
+.buttonCustom {
+    background-color: var(--color-very-light-grayish-cyan);
+    color: var(--color-dark-grayish-cyan);
+}
+
+.result {
+    flex: 1;
+    background-color: var(--color-very-dark-cyan);
+    border-radius: 1rem;
+    padding: 2rem;
+}
