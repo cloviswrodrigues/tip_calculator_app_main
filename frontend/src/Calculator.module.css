@@ -19,26 +19,33 @@
 .tip .buttons {
     display: grid;
     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
-    gap: .8rem;
+    gap: 1rem;
     margin-top: .8rem;
 
 }
 
 .buttons > button {
     border: none;
-    padding: .5rem 2rem;
+    padding: .5rem 1rem;
     border-radius: .4rem;
     font-family: var(--font-1);
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 
 .buttonFixed {
+    cursor: pointer;
     background-color: var(--color-very-dark-cyan);
     color: var(--color-white); 
 }
 
+.buttonFixed:hover {
+    background-color: var(--color-medium-grayish-cyan);
+    color: var(--color-very-dark-cyan); 
+}
+
 .buttonCustom {
+    cursor: pointer;
     background-color: var(--color-very-light-grayish-cyan);
     color: var(--color-dark-grayish-cyan);
 }
@@ -96,4 +103,9 @@
     text-transform: uppercase;
     font-family: var(--font-1);
     color: var(--color-very-dark-cyan);
+    cursor: pointer;
+}
+
+.result button:hover {    
+    background-color: var(--color-medium-grayish-cyan);
 }
