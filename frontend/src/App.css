@@ -11,6 +11,7 @@
   --color-light-grayish-cyan: hsl(185, 41%, 84%);
   --color-very-light-grayish-cyan: hsl(189, 41%, 97%);
   --color-white: hsl(0, 0%, 100%);
+  --color-red: rgb(247, 85, 85);
 
   --font-1: 'Space Mono', monospace;
 }
@@ -47,7 +48,7 @@ input {
 
 .input {
   width: 100%;
-  border: none;
+  border: 2px solid var(--color-very-light-grayish-cyan);
   background-color: var(--color-very-light-grayish-cyan);
   font-size: 2rem;
   color: var(--color-very-dark-cyan);
@@ -56,4 +57,44 @@ input {
   padding: .5rem;
   margin-top: .5rem;
   outline: none;
+  transition: all .5s;
+}
+
+.input:focus {
+  border: 2px solid var(--color-strong-cyan);
+}
+
+.input-error,
+.input-error:focus {
+  border: 2px solid var(--color-red);
+}
+
+.input-coin {
+  position: relative;
+}
+
+.input-coin::before {
+  content: '';
+  background: url(./assets/icon-dollar.svg) no-repeat;
+  display: inline-block;
+  width: 11px;
+  height: 17px;
+  position: absolute;
+  top: 18px;
+  left: 15px;
+}
+
+.input-person {
+  position: relative;
+}
+
+.input-person::before {
+  content: '';
+  background: url(./assets/icon-person.svg) no-repeat;
+  display: inline-block;
+  width: 13px;
+  height: 16px;
+  position: absolute;
+  top: 18px;
+  left: 15px;
 }

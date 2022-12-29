@@ -7,7 +7,9 @@ const Calculator = () => {
             <div className={style.values}>
                 <div className={style.bill}>
                     <label htmlFor="bill" className='type-1'>Bill</label>
-                    <input type="number" className='input' id="bill"/>
+                    <div className='input-coin'>
+                        <input type="number" className='input' id="bill"/>
+                    </div>
                 </div>
                 <div className={style.tip}>
                     <p className='type-1'>Select Tip %</p>
@@ -20,9 +22,12 @@ const Calculator = () => {
                         <button className={style.buttonCustom}>Custom</button>
                     </div>
                 </div>
-                <div>
-                    <label htmlFor="people" className='type-1'>Number of People</label>
-                    <input type="number" name="" id="people" className='input'/>
+                <div className={style.numberPerson}>
+                    <label htmlFor="person" className='type-1'>Number of People</label>
+                    <span className={style.error}>Can't be zero</span>
+                    <div className='input-person'>
+                        <input type="number" name="" id="person" className='input'/>
+                    </div>
                 </div>
             </div>
             <div className={style.result}>
