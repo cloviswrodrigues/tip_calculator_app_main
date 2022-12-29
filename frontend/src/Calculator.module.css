@@ -44,6 +44,11 @@
     color: var(--color-very-dark-cyan); 
 }
 
+.buttonActive {
+    background-color: var(--color-strong-cyan);
+    color: var(--color-very-dark-cyan);
+}
+
 .buttonCustom {
     cursor: pointer;
     background-color: var(--color-very-light-grayish-cyan);
