@@ -6,7 +6,8 @@ const Calculator = () => {
   const [tip, setTip] = React.useState(0);
   const [customTipActive, setCustomTipActive] = React.useState(false);
   const [person, setPerson] = React.useState(0);
-  const [customTip, setCustomTip] = React.useState(0);
+  const [tipAmountPerson, setTipAmountPerson] = React.useState(0.0);
+  const [totalPerson, setTotalPerson] = React.useState(0.0);
   const refCustomTip = React.useRef();
 
   function selectTip(event) {
@@ -14,14 +15,25 @@ const Calculator = () => {
     let tip = Number(element.dataset.percent);
     setTip(tip);
     setCustomTipActive(false);
-    console.log("tip: ", tip);
   }
 
   function selectTipCustom(event) {
-    console.log("aquiii: ", refCustomTip.current);
+    setTip(0);
     setCustomTipActive(true);
-    refCustomTip.current.focus();
   }
+
+  React.useEffect(() => {
+    let tipCalc = (bill * tip) / 100;
+
+    let totalPerson = (bill + tipCalc) / person;
+    totalPerson = totalPerson.toFixed(2);
+
+    let tipAmountPerson = tipCalc / person;
+    tipAmountPerson = tipAmountPerson.toFixed(2);
+
+    if (tipAmountPerson) setTipAmountPerson(tipAmountPerson);
+    if (totalPerson) setTotalPerson(totalPerson);
+  }, [bill, tip, person]);
 
   return (
     <div className={style.calculator}>
@@ -36,7 +48,7 @@ const Calculator = () => {
               className="input"
               id="bill"
               value={bill}
-              onChange={(event) => setBill(event.target.value)}
+              onChange={(event) => setBill(Number(event.target.value))}
             />
           </div>
         </div>
@@ -93,8 +105,8 @@ const Calculator = () => {
               name=""
               id="customtip"
               className={`input ${customTipActive ? "" : "hidden"}`}
-              value={customTip}
-              onChange={(event) => setCustomTip(event.target.value)}
+              value={tip}
+              onChange={(event) => setTip(Number(event.target.value))}
               ref={refCustomTip}
             />
             <button
@@ -119,7 +131,7 @@ const Calculator = () => {
               id="person"
               className="input"
               value={person}
-              onChange={(event) => setPerson(event.target.value)}
+              onChange={(event) => setPerson(Number(event.target.value))}
             />
           </div>
         </div>
@@ -131,14 +143,14 @@ const Calculator = () => {
               <p>Tip Amount</p>
               <span>/ person</span>
             </div>
-            <div className={style.value}>$4.27</div>
+            <div className={style.value}>${tipAmountPerson}</div>
           </div>
           <div className={style.row}>
             <div className={style.description}>
               <p>Total</p>
               <span>/ person</span>
             </div>
-            <div className={style.value}>$0.00</div>
+            <div className={style.value}>${totalPerson}</div>
           </div>
         </div>
         <button>reset</button>
