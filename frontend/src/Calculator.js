@@ -4,13 +4,23 @@ import style from "./Calculator.module.css";
 const Calculator = () => {
   const [bill, setBill] = React.useState(0);
   const [tip, setTip] = React.useState(0);
+  const [customTipActive, setCustomTipActive] = React.useState(false);
   const [person, setPerson] = React.useState(0);
+  const [customTip, setCustomTip] = React.useState(0);
+  const refCustomTip = React.useRef();
 
-  function buttonActive(event) {
+  function selectTip(event) {
     let element = event.target;
     let tip = Number(element.dataset.percent);
     setTip(tip);
+    setCustomTipActive(false);
     console.log("tip: ", tip);
+  }
+
+  function selectTipCustom(event) {
+    console.log("aquiii: ", refCustomTip.current);
+    setCustomTipActive(true);
+    refCustomTip.current.focus();
   }
 
   return (
@@ -38,7 +48,7 @@ const Calculator = () => {
                 tip === 5 ? style.buttonActive : ""
               }`}
               data-percent="5"
-              onClick={buttonActive}
+              onClick={selectTip}
             >
               5%
             </button>
@@ -47,7 +57,7 @@ const Calculator = () => {
                 tip === 10 ? style.buttonActive : ""
               }`}
               data-percent="10"
-              onClick={buttonActive}
+              onClick={selectTip}
             >
               10%
             </button>
@@ -56,7 +66,7 @@ const Calculator = () => {
                 tip === 15 ? style.buttonActive : ""
               }`}
               data-percent="15"
-              onClick={buttonActive}
+              onClick={selectTip}
             >
               15%
             </button>
@@ -65,7 +75,7 @@ const Calculator = () => {
                 tip === 25 ? style.buttonActive : ""
               }`}
               data-percent="25"
-              onClick={buttonActive}
+              onClick={selectTip}
             >
               25%
             </button>
@@ -74,11 +84,27 @@ const Calculator = () => {
                 tip === 50 ? style.buttonActive : ""
               }`}
               data-percent="50"
-              onClick={buttonActive}
+              onClick={selectTip}
             >
               50%
             </button>
-            <button className={style.buttonCustom}>Custom</button>
+            <input
+              type="number"
+              name=""
+              id="customtip"
+              className={`input ${customTipActive ? "" : "hidden"}`}
+              value={customTip}
+              onChange={(event) => setCustomTip(event.target.value)}
+              ref={refCustomTip}
+            />
+            <button
+              className={`${style.buttonCustom} ${
+                customTipActive ? "hidden" : ""
+              }`}
+              onClick={selectTipCustom}
+            >
+              Custom
+            </button>
           </div>
         </div>
         <div className={style.numberPerson}>

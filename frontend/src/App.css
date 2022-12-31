@@ -47,6 +47,10 @@ input {
   color: var(--color-dark-grayish-cyan);
 }
 
+.hidden {
+  display: none;
+}
+
 .input {
   width: 100%;
   border: 2px solid var(--color-very-light-grayish-cyan);
@@ -56,7 +60,6 @@ input {
   text-align: right;
   border-radius: .5rem;
   padding: .5rem;
-  margin-top: .5rem;
   outline: none;
   transition: all .5s;
 }
