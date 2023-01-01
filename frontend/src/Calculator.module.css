@@ -60,6 +60,10 @@
     color: var(--color-dark-grayish-cyan);
 }
 
+.inputCustomTip {
+    padding: 0 1rem;
+}
+
 .numberPerson .error {
     float: right;
     font-family: var(--font-1);

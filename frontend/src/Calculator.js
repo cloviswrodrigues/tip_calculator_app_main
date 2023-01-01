@@ -3,8 +3,7 @@ import style from "./Calculator.module.css";
 
 const Calculator = () => {
   const [bill, setBill] = React.useState(0);
-  const [tip, setTip] = React.useState(0);
-  const [customTipActive, setCustomTipActive] = React.useState(false);
+  const [tip, setTip] = React.useState();
   const [person, setPerson] = React.useState(0);
   const [tipAmountPerson, setTipAmountPerson] = React.useState(0);
   const [totalPerson, setTotalPerson] = React.useState(0);
@@ -15,12 +14,6 @@ const Calculator = () => {
     let element = event.target;
     let tip = Number(element.dataset.percent);
     setTip(tip);
-    setCustomTipActive(false);
-  }
-
-  function selectTipCustom(event) {
-    setTip(0);
-    setCustomTipActive(true);
   }
 
   function handleInputPerson(event) {
@@ -115,22 +108,15 @@ const Calculator = () => {
               50%
             </button>
             <input
-              type="number"
+              type="text"
               name=""
               id="customtip"
-              className={`input ${customTipActive ? "" : "hidden"}`}
+              className={`input ${style.inputCustomTip}`}
               value={tip}
-              onChange={(event) => setTip(Number(event.target.value))}
+              onChange={(event) => setTip(event.target.value)}
+              placeholder="Custom"
               ref={refCustomTip}
             />
-            <button
-              className={`${style.buttonCustom} ${
-                customTipActive ? "hidden" : ""
-              }`}
-              onClick={selectTipCustom}
-            >
-              Custom
-            </button>
           </div>
         </div>
         <div className={style.numberPerson}>
