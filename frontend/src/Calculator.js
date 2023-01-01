@@ -6,9 +6,10 @@ const Calculator = () => {
   const [tip, setTip] = React.useState(0);
   const [customTipActive, setCustomTipActive] = React.useState(false);
   const [person, setPerson] = React.useState(0);
-  const [tipAmountPerson, setTipAmountPerson] = React.useState(0.0);
-  const [totalPerson, setTotalPerson] = React.useState(0.0);
+  const [tipAmountPerson, setTipAmountPerson] = React.useState(0);
+  const [totalPerson, setTotalPerson] = React.useState(0);
   const refCustomTip = React.useRef();
+  const [cantBeZero, setCantBeZero] = React.useState(false);
 
   function selectTip(event) {
     let element = event.target;
@@ -22,17 +23,30 @@ const Calculator = () => {
     setCustomTipActive(true);
   }
 
+  function handleInputPerson(event) {
+    let value = Number(event.target.value);
+    setPerson(value);
+
+    if (value === 0) {
+      setCantBeZero(true);
+      return;
+    }
+    setCantBeZero(false);
+  }
+
   React.useEffect(() => {
-    let tipCalc = (bill * tip) / 100;
+    if (person > 0) {
+      let tipCalc = (bill * tip) / 100;
 
-    let totalPerson = (bill + tipCalc) / person;
-    totalPerson = totalPerson.toFixed(2);
+      let totalPerson = (bill + tipCalc) / person;
+      totalPerson = totalPerson;
 
-    let tipAmountPerson = tipCalc / person;
-    tipAmountPerson = tipAmountPerson.toFixed(2);
+      let tipAmountPerson = tipCalc / person;
+      tipAmountPerson = tipAmountPerson;
 
-    if (tipAmountPerson) setTipAmountPerson(tipAmountPerson);
-    if (totalPerson) setTotalPerson(totalPerson);
+      if (!isNaN(tipAmountPerson)) setTipAmountPerson(tipAmountPerson);
+      if (!isNaN(totalPerson)) setTotalPerson(totalPerson);
+    }
   }, [bill, tip, person]);
 
   return (
@@ -123,15 +137,16 @@ const Calculator = () => {
           <label htmlFor="person" className="type-1">
             Number of People
           </label>
-          <span className={style.error}>Can't be zero</span>
+          {cantBeZero && <span className={style.error}>Can't be zero</span>}
           <div className="input-person">
             <input
               type="number"
               name=""
               id="person"
               className="input"
+              placeholder="0"
               value={person}
-              onChange={(event) => setPerson(Number(event.target.value))}
+              onChange={handleInputPerson}
             />
           </div>
         </div>
@@ -143,14 +158,14 @@ const Calculator = () => {
               <p>Tip Amount</p>
               <span>/ person</span>
             </div>
-            <div className={style.value}>${tipAmountPerson}</div>
+            <div className={style.value}>${tipAmountPerson.toFixed(2)}</div>
           </div>
           <div className={style.row}>
             <div className={style.description}>
               <p>Total</p>
               <span>/ person</span>
             </div>
-            <div className={style.value}>${totalPerson}</div>
+            <div className={style.value}>${totalPerson.toFixed(2)}</div>
           </div>
         </div>
         <button>reset</button>

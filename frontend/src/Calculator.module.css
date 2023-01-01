@@ -61,7 +61,6 @@
 }
 
 .numberPerson .error {
-    display: none;
     float: right;
     font-family: var(--font-1);
     font-size: 1.2rem;
