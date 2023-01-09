@@ -152,7 +152,7 @@ const Calculator = () => {
               type="text"
               name=""
               id="person"
-              className="input"
+              className={`input ${cantBeZero ? "input-error" : ""}`}
               placeholder="0"
               value={person}
               onChange={handleInputPerson}
