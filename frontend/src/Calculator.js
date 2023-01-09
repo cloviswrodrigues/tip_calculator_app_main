@@ -11,6 +11,13 @@ const Calculator = () => {
   const refCustomTip = React.useRef();
   const [cantBeZero, setCantBeZero] = React.useState(false);
 
+  function handleInputBill(event) {
+    let bill = Number(event.target.value);
+    if (!isNaN(bill)) {
+      setBill(bill);
+    }
+  }
+
   function selectTip(event) {
     let element = event.target;
     let tip = Number(element.dataset.percent);
@@ -29,23 +36,22 @@ const Calculator = () => {
 
   function handleInputPerson(event) {
     let value = Number(event.target.value);
-    setPerson(value);
 
-    if (value === 0) {
-      setCantBeZero(true);
-      return;
+    if (!isNaN(value)) {
+      setPerson(value);
+
+      if (value === 0) {
+        setCantBeZero(true);
+        return;
+      }
+      setCantBeZero(false);
     }
-    setCantBeZero(false);
   }
 
   React.useEffect(() => {
     if (person > 0) {
       let tipCurrent =
         tipCustom > 0 && Number.isInteger(tipCustom) ? tipCustom : tip;
-      console.log("tipCurrent: ", tipCurrent);
-      console.log("tipCustom: ", tipCustom);
-      console.log("tip: ", tip);
-      console.log("number: ", Number.isInteger(tipCustom));
       let tipCalc = (bill * tipCurrent) / 100;
 
       let totalPerson = (bill + tipCalc) / person;
@@ -68,11 +74,11 @@ const Calculator = () => {
           </label>
           <div className="input-coin">
             <input
-              type="number"
+              type="text"
               className="input"
               id="bill"
               value={bill}
-              onChange={(event) => setBill(Number(event.target.value))}
+              onChange={handleInputBill}
             />
           </div>
         </div>
@@ -143,7 +149,7 @@ const Calculator = () => {
           {cantBeZero && <span className={style.error}>Can't be zero</span>}
           <div className="input-person">
             <input
-              type="number"
+              type="text"
               name=""
               id="person"
               className="input"
