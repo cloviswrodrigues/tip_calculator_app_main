@@ -3,7 +3,8 @@ import style from "./Calculator.module.css";
 
 const Calculator = () => {
   const [bill, setBill] = React.useState(0);
-  const [tip, setTip] = React.useState();
+  const [tip, setTip] = React.useState(0);
+  const [tipCustom, setTipCustom] = React.useState("");
   const [person, setPerson] = React.useState(0);
   const [tipAmountPerson, setTipAmountPerson] = React.useState(0);
   const [totalPerson, setTotalPerson] = React.useState(0);
@@ -14,6 +15,16 @@ const Calculator = () => {
     let element = event.target;
     let tip = Number(element.dataset.percent);
     setTip(tip);
+    setTipCustom("");
+  }
+
+  function handleInputTipCustom(event) {
+    let tipCustom = Number(event.target.value);
+    let LIMIT_TIP_CUSTOM = 100;
+    if (!isNaN(tipCustom) && tipCustom <= LIMIT_TIP_CUSTOM) {
+      setTipCustom(tipCustom);
+      setTip(0);
+    }
   }
 
   function handleInputPerson(event) {
@@ -29,7 +40,13 @@ const Calculator = () => {
 
   React.useEffect(() => {
     if (person > 0) {
-      let tipCalc = (bill * tip) / 100;
+      let tipCurrent =
+        tipCustom > 0 && Number.isInteger(tipCustom) ? tipCustom : tip;
+      console.log("tipCurrent: ", tipCurrent);
+      console.log("tipCustom: ", tipCustom);
+      console.log("tip: ", tip);
+      console.log("number: ", Number.isInteger(tipCustom));
+      let tipCalc = (bill * tipCurrent) / 100;
 
       let totalPerson = (bill + tipCalc) / person;
       totalPerson = totalPerson;
@@ -40,7 +57,7 @@ const Calculator = () => {
       if (!isNaN(tipAmountPerson)) setTipAmountPerson(tipAmountPerson);
       if (!isNaN(totalPerson)) setTotalPerson(totalPerson);
     }
-  }, [bill, tip, person]);
+  }, [bill, tip, tipCustom, person]);
 
   return (
     <div className={style.calculator}>
@@ -112,8 +129,8 @@ const Calculator = () => {
               name=""
               id="customtip"
               className={`input ${style.inputCustomTip}`}
-              value={tip}
-              onChange={(event) => setTip(event.target.value)}
+              value={tipCustom}
+              onChange={handleInputTipCustom}
               placeholder="Custom"
               ref={refCustomTip}
             />
