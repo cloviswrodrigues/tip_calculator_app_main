@@ -2,14 +2,15 @@ import React from "react";
 import style from "./Calculator.module.css";
 
 const Calculator = () => {
-  const [bill, setBill] = React.useState(0);
-  const [tip, setTip] = React.useState(0);
+  const [bill, setBill] = React.useState("");
+  const [tip, setTip] = React.useState("");
   const [tipCustom, setTipCustom] = React.useState("");
-  const [person, setPerson] = React.useState(0);
+  const [person, setPerson] = React.useState("");
   const [tipAmountPerson, setTipAmountPerson] = React.useState(0);
   const [totalPerson, setTotalPerson] = React.useState(0);
   const refCustomTip = React.useRef();
   const [cantBeZero, setCantBeZero] = React.useState(false);
+  const [resetEnable, setResetEnable] = React.useState(false);
 
   function handleInputBill(event) {
     let bill = Number(event.target.value);
@@ -48,7 +49,29 @@ const Calculator = () => {
     }
   }
 
+  function handleReset(event) {
+    if (resetEnable) {
+      setBill("");
+      setTip("");
+      setTipCustom("");
+      setPerson("");
+      setCantBeZero(false);
+      setTipAmountPerson(0);
+      setTotalPerson(0);
+      setResetEnable(false);
+    }
+  }
+
   React.useEffect(() => {
+    let dependecies = [bill, tip, tipCustom, person];
+    if (
+      dependecies.find((element) => {
+        return element != "";
+      })
+    ) {
+      setResetEnable(true);
+    }
+
     if (person > 0) {
       let tipCurrent =
         tipCustom > 0 && Number.isInteger(tipCustom) ? tipCustom : tip;
@@ -76,6 +99,7 @@ const Calculator = () => {
             <input
               type="text"
               className="input"
+              placeholder="0"
               id="bill"
               value={bill}
               onChange={handleInputBill}
@@ -177,7 +201,12 @@ const Calculator = () => {
             <div className={style.value}>${totalPerson.toFixed(2)}</div>
           </div>
         </div>
-        <button>reset</button>
+        <button
+          onClick={handleReset}
+          className={resetEnable ? null : style.resetDisabled}
+        >
+          reset
+        </button>
       </div>
     </div>
   );

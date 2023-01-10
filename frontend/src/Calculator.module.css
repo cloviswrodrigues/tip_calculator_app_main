@@ -127,3 +127,12 @@
 .result button:hover {    
     background-color: var(--color-medium-grayish-cyan);
 }
+
+.result .resetDisabled {
+    opacity: .5;
+    cursor: default;
+}
+
+.result .resetDisabled:hover {
+    background-color: var(--color-strong-cyan);
+}
