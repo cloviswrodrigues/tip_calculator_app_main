@@ -1,5 +1,6 @@
 .calculator {
-    width: 80rem;
+    max-width: 80rem;
+    width: 100%;
     height: 40rem;
     background-color: var(--color-white);
     padding: 2.5rem;
@@ -26,7 +27,6 @@
     grid-template: repeat(2, 39px) / repeat(3, 1fr);
     gap: 1rem;
     margin-top: .8rem;
-
 }
 
 .buttons > button {
@@ -135,4 +135,32 @@
 
 .result .resetDisabled:hover {
     background-color: var(--color-strong-cyan);
+}
+
+
+@media screen and (max-width: 900px) {
+    .calculator {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        gap: 2rem;
+    }    
+
+    .values {
+        justify-content: baseline;       
+        gap: 2.5rem;       
+    }
+
+    .tip .buttons {
+        grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+    }
+
+    .row .value {
+        font-size: 2.8rem;
+    }    
+
+    .result {
+        justify-content: baseline;
+        gap: 3rem;
+    }
 }
