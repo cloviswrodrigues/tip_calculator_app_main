@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Calculator.module.css";
+import { currencyMask } from "./helper";
 
 const Calculator = () => {
   const [bill, setBill] = React.useState("");
@@ -13,10 +14,8 @@ const Calculator = () => {
   const [resetEnable, setResetEnable] = React.useState(false);
 
   function handleInputBill(event) {
-    let bill = Number(event.target.value);
-    if (!isNaN(bill)) {
-      setBill(bill);
-    }
+    let value = currencyMask(event.target.value);
+    setBill(value);
   }
 
   function selectTip(event) {
@@ -75,9 +74,10 @@ const Calculator = () => {
     if (person > 0) {
       let tipCurrent =
         tipCustom > 0 && Number.isInteger(tipCustom) ? tipCustom : tip;
-      let tipCalc = (bill * tipCurrent) / 100;
+      let billNumber = Number(bill.replaceAll(",", ""));
+      let tipCalc = (billNumber * tipCurrent) / 100;
 
-      let totalPerson = (bill + tipCalc) / person;
+      let totalPerson = (billNumber + tipCalc) / person;
       totalPerson = totalPerson;
 
       let tipAmountPerson = tipCalc / person;
